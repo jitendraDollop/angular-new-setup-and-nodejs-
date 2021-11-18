@@ -1,0 +1,34 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <form [formGroup]="fileForm">
+                <div class="card">
+                    <div class="card-header bg-dark">
+                        <h3 class="text-light">File Uploaded</h3>
+                    </div>
+                    <div class="card-body bg-secondary">
+                        <div class="form-group">
+                            <input formControlName="file" [ngClass]="{'is-invalid' : isSubmit && fileForm.controls.file.errors}" type="file"  #image class="form-control" (change)="onFileChange($evant)" />
+                            <div class="invalid-feedback" *ngIf="isSubmit && fileForm.controls.file.errors">
+                                <div *ngIf="fileForm.controls.file.errors.required">
+                                    please Uploaded Images
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-dark">
+                        <button class="btn btn-primary" (click)="submit(image)">Upload</button>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+                    <img src="{{ path }}" height="450" width="450" style="padding: 10px;" />
+               
+                <a routerLink="/node-api/assets/images/" download class="btn btn-info" data-dismiss="modal">Download</a>
+        
+
+  

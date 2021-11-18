@@ -1,0 +1,62 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div *ngIf="msg" class="alert alert-info">
+                Users Information is Succssfully Update  ! <a href="#" class="close">X</a>
+            </div>
+            <form [formGroup]="userReg">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Update User Profile</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input formControlName="name" [ngClass]="{'is-invalid' : isSubmit && userReg.controls.name.errors}" type="text" class="form-control" />
+                            <div class="invalid-feedback" *ngIf="isSubmit && userReg.controls.name.errors">
+                                <div *ngIf="userReg.controls.name.errors.required">
+                                    Please Insert Name
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Username/Email</label>
+                            <input formControlName="username" [ngClass]="{'is-invalid' : isSubmit && userReg.controls.username.errors}" type="text" class="form-control" />
+                            <div class="invalid-feedback" *ngIf="isSubmit && userReg.controls.username.errors">
+                                <div *ngIf="userReg.controls.username.errors.required">
+                                    Please Insert Userrname
+                                </div>
+                                <div *ngIf="userReg.controls.username.errors.email">
+                                    Please Insert Correct Email
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Contact</label>
+                            <input formControlName="contact" [ngClass]="{'is-invalid' : isSubmit && userReg.controls.contact.errors}" type="text" class="form-control" />
+                            <div class="invalid-feedback" *ngIf="isSubmit && userReg.controls.contact.errors">
+                                <div *ngIf="userReg.controls.contact.errors.required">
+                                    Please Insert Contact Number 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <textarea formControlName="address" [ngClass]="{'is-invalid' : isSubmit && userReg.controls.address.errors}" class="form-control"></textarea>
+                            <div class="invalid-feedback" *ngIf="isSubmit && userReg.controls.address.errors">
+                                <div *ngIf="userReg.controls.address.errors.required">
+                                    Please Insert Address
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <input (click)="submit()" type="submit" value="Update" class="btn btn-primary">
+                        <a routerLink="/profile" class="btn btn-outline-danger ml-2">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

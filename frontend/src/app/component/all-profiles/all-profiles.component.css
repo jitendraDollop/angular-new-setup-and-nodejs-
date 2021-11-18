@@ -1,0 +1,17 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+
+.text-name{
+    /* margin-left: -70px; */
+    color: hsl(300, 86%, 33%);
+    font-weight: bold;
+    /* padding-left: 120px; */
+    text-shadow: 2px 3px rgb(19, 144, 175);
+    /* left: 400px; */
+    /* text-align: center; */
+    /* display: block; */
+    
+}

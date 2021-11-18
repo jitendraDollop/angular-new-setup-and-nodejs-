@@ -1,0 +1,23 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card">
+                <div class="card-header">
+                    <h3>All Pagination</h3>
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let item of pageOfItem">
+                        
+                        {{ item.name}}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

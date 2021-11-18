@@ -1,0 +1,71 @@
+<html>
+    <head>
+      <title><%= title %></title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <!-- Brand -->
+            <a class="navbar-brand" href="#">The NodeJs Developer</a>
+          
+            <!-- Toggler/collapsibe Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <%= url %>
+                  <ul class="navbar-nav">
+                    <% if(session.is_user_logged_in) { %> 
+                      <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/profile">Profile</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/share/me">Share_With_Me</a>  
+                      </li>
+                    <li class="nav-item dropdown">
+                      <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown">Files Upload 
+                      <span data-toggler="dropdown"></span></button>
+                      <ul class="dropdown-menu">
+                        <li class="bg-dark"><a href="/files/ppt">PPT</a></li>
+                        <li class="bg-dark"><a href="/files/pdf">PDF</a></li>
+                        <li class="bg-dark"><a href="/files/doc">DOC</a></li>
+                        <li class="bg-dark"><a href="/files/images">IMAGES</a></li>
+                        <li class="bg-dark"><a href="/files/other">OTHER</a></li>
+                      </ul>
+                    </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#"><%= session.name %></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                  </li>
+                <% } else { %>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/signup">Signup</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                  </li>
+                  <% } %>  
+              </ul>
+            </div>
+          </nav>
+        <%- include(pagename) %>
+    </body>
+</html>
+

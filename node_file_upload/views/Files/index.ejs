@@ -1,0 +1,50 @@
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <h4>Upload file Extention Type : <span class="badge badge-info"><%= type %></span></h4>
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>File Uploaded</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" name="name" />
+                        </div>
+                        <div class="form-group">
+                            <label>File Upload</label>
+                            <input type="file" class="form-control" name="file" />
+                        </div>
+                        <p class="text-danger"><%= message %></p>
+                    </div>
+                    <div class="card-footer">
+                        <input type="submit" class="btn btn-primary" value="Upload" />
+                    </div>
+                </div>
+            </form>
+            <table class="table table-hover table-dark table-bordered table-striped bg-dark">
+                <tr>
+                    <th>S.No.</th>
+                    <th>Name</th>
+                    <th>Files Download</th>
+                    <th>Share</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <% result.forEach(function(files, n){ %>
+                    <tr>
+                        <td><%= n+1 %></td>
+                        <td><%= files.name %></td>
+                        <td><a download href="/<%= type %>/<%= files.filename  %>">Download</a></td>
+                        <td><a href="/share/<%= files._id %>"><i class="fa fa-share fa fa-lg p-2 ml-3" aria-hidden="true"></a></i></td>
+                        <td><a href="/file/edit/<%= files._id %>" class="btn btn-info btn-sm">Edit</a></td>
+                        <td><a href="/file/delete/<%= files._id %>" class="btn btn-danger btn-sm">Delete</a></td>
+                    </tr>
+                    <% }) %>
+            </table>
+        </div>
+    </div>
+</div>
+

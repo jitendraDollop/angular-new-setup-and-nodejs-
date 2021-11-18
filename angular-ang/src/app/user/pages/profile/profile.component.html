@@ -1,0 +1,50 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <a routerLink="/profile/add" class="btn btn-primary my-4">Add Users</a>
+            <table class="table table-hover table-stripped table-dark table-bordered bg-dark">
+                <tr>
+                    <th>S.No.</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Country</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Address</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <tr *ngFor="let user of allUsers; let n = index">
+                    <td>{{ n+1 }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.contact }}</td>
+                    <td>{{ user.country }}</td>
+                    <td>{{ user.state }}</td>
+                    <td>{{ user.city }}</td>
+                    <td>{{ user.address }}</td>
+                    <td><a routerLink="/profile/edit/{{ user._id }}" class="btn btn-warning">Edit</a></td> 
+                    <td><button (click)="askDelete(user)" class="btn btn-danger" data-toggle="modal" data-target="#delModal">Delete</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="delModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Users Deleted</h3>
+            </div>
+            <div class="modal-body">
+                Are you sure want to Delete this <b *ngIf="tempUsers">{{ tempUsers.name }}</b> !
+            </div>
+            <div class="modal-footer">
+                <button (click)="delete()" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                <button class="btn btn-outline-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

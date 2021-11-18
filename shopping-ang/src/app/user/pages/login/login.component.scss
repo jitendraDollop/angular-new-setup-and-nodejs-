@@ -1,0 +1,71 @@
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #5a1b4a;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: rgb(240, 241, 235);
+  outline: none;
+}
+
+.container {
+    padding: 16px;
+  }
+  
+
+  button:hover {
+    opacity:1;
+  }
+  
+  .cancelBtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+  }
+  
+
+  .card-footer .cancelBtn {
+    float: left;
+    width: 48%;
+}
+
+.card-footer .signupBtn {
+    float: left;
+    width: 48%;
+    // padding-left: 5px;
+    margin-left: 15px;
+  }
+
+  @media screen and (max-width: 300px) {
+      .card-footer
+    .cancelBtn, .signupBtn {
+       width: 50%;
+    }
+  }
+
+  .card-footer button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 20px 50px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    // width: 100%;
+    opacity: 0.8;
+    padding-left: 30px;
+  }
+  
+  .footer-bottom button {
+    background-color: #f41136;
+    color: #fabac6;
+    padding-left: 30px;
+    // height: 100px;
+    width: 100%;
+  }
+  

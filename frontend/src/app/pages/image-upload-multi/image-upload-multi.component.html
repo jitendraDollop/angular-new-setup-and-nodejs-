@@ -1,0 +1,33 @@
+<form [formGroup]="myForm" (ngSubmit)="submit()">
+         
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input 
+            formControlName="name"
+            id="name" 
+            type="text" 
+            class="form-control">
+        <div *ngIf="userReg.name.touched && userReg.name.invalid" class="alert alert-danger">
+            <div *ngIf="userReg.name.errors.required">Please .</div>
+            <div *ngIf="userReg.name.errors.minlength">Name should be 3 character.</div>
+        </div>
+    </div>
+   
+    <div class="form-group">
+        <label for="file">File</label>
+        <input 
+            formControlName="file"
+            id="file" 
+            type="file" 
+            class="form-control"
+            multiple="" 
+            (change)="onFileChange($event)">
+        <div *ngIf="userReg.file.touched && userReg.file.invalid" class="alert alert-danger">
+            <div *ngIf="userReg.file.errors.required">File is required.</div>
+        </div>
+    </div>
+   
+    <img *ngFor='let url of images'  [src]="url" height="150" width="200px" style="margin: 3px;"> <br/>
+       
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>

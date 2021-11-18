@@ -1,0 +1,44 @@
+<body>
+    <div class="container">
+        <h2 class="text-center text-danger" style="text-shadow : 2px 2px red !important; font: 60px bold;">User Login</h2>
+    <div class="text-center">
+        <h5>Please click the button </h5>
+        <i class="fa fa-arrow-down fa-lg"></i>
+    </div>
+    <br>
+    <div class="text-center"> 
+        <!-- <button class="btn btn-primary" data-toggle="modal" data-target="#formModal">Click</button> -->
+        <a href="" class="btn btn-dafault btn-rounded mb-4" data-toggle="modal" data-target="#formModal">Click</a>
+    </div>
+        <div class="modal fade" id="formModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>User Login</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input [(ngModel)]="user.username" type="text" class="form-control" placeholder="Enter Email"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input [(ngModel)]="user.password" type="password" class="form-control" placeholder="Enter Password" />
+                            <p class="text-danger text-canter">{{ msg }}</p>
+                        </div>
+                        
+                    <div class="card-footer">
+                        <button type="button" style="background-color: red;" class="btn btn-danger cancelBtn" data-dismiss="modal">Cancel</button>
+                        <button (click)="submit(resets)"  type="submit" class="btn btn-success signupBtn">Login</button>
+                        <div class="footer-bottom">
+                            <button #resets type="reset" class="btn btn-success">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    
+    </div>
+
+</body>

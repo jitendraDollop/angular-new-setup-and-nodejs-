@@ -1,0 +1,21 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Users Email</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" [formControl]="email" class="form-control" />
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <input (click)="emailUpdate()" type="submit" class="btn btn-primary" value="Submit">
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>Value : {{ email.value }}</p>
+</div>
