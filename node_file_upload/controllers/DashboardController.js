@@ -24,12 +24,7 @@ exports.index = (req, res)=>{
         stateSel.options[stateSel.options.length] = new Option(state[i], state[i]);
         }
         }
-         
-        
-        
-        
         var pageData = { title : "Dashboard Page", pagename : "Dashboard/index"};
-
         res.render("layout", pageData);
     })
 }                       
