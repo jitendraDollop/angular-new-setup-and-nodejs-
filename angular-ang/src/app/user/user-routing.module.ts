@@ -12,6 +12,7 @@ import { AddProfileComponent } from './pages/add-profile/add-profile.component';
 import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
 import { FilesComponent } from './pages/files/files.component';
 import { AfterloginGuard } from './guard/afterlogin.guard';
+import { DropdownComponent } from './pages/dropdown/dropdown.component';
 const routes: Routes = [
   {
     path : "",
@@ -54,6 +55,12 @@ const routes: Routes = [
         path : "users",
         canActivate : [BeforLoginGuard],
         component : UsersComponent
+      },
+      
+      {
+        path : "dropdown",
+        canActivate : [BeforLoginGuard],
+        component : DropdownComponent
       }
     ]
   }

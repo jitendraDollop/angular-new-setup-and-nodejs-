@@ -20,8 +20,13 @@ import { EditProfileComponent } from './pages/edit-profile/edit-profile.componen
 import { FilesComponent } from './pages/files/files.component';
 import { UsersComponent } from './pages/users/users.component';
 
+import { SelectService } from './services/select.service';
+import { DropdownComponent } from './pages/dropdown/dropdown.component';
+
+
+
 @NgModule({
-  declarations: [UserComponent, HomeComponent, SignupComponent, LoginComponent, ProfileComponent, HeaderComponent, AddProfileComponent, EditProfileComponent, FilesComponent, UsersComponent],
+  declarations: [UserComponent, HomeComponent, SignupComponent, LoginComponent, ProfileComponent, HeaderComponent, AddProfileComponent, EditProfileComponent, FilesComponent, UsersComponent, DropdownComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -29,6 +34,6 @@ import { UsersComponent } from './pages/users/users.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers : [LoginService, SignupService, UserService]
+  providers : [LoginService, SignupService, UserService, SelectService]
 })
 export class UserModule { }

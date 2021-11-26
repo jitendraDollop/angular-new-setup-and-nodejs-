@@ -5,16 +5,15 @@ import { Router } from '@angular/router';
 import { contactErr, conNumberError, passwordError, passwordCharector } from '../../../helper/helper.validation';
 import { UserService } from '../../services/user.service';
 
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
+
 export class SignupComponent implements OnInit {
 
   userReg : FormGroup;
-
   isSubmit = false;
   country =[];
   state =[];
@@ -39,13 +38,10 @@ export class SignupComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.country = this._userServ.country();
-    // this.state = this._userServ.state();
-    
+    this.country = this._userServ.country();    
   }
-  
-  submit(){
-    // console.log(image.files[0]);
+
+  public submit() : void{
     this.isSubmit = true;
     if(this.userReg.invalid){
       return;
@@ -55,17 +51,15 @@ export class SignupComponent implements OnInit {
     })
   }
   
-  reset(){
+  public reset() : void{
     this.isSubmit = false;
     this.userReg.reset();
-    
   }
   
-  onChangeCountrySelect(country){
+  public onChangeCountrySelect(country) : void{
     this.country = this._userServ.country().filter(st=>st.id);
     this.city = this._userServ.city().filter(e=>e.id == country.target.value);
     this.state = this._userServ.state().filter(ev=>ev.id == country.target.value);
-
   }
   
 }

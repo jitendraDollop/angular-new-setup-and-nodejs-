@@ -1,0 +1,4 @@
+export enum ErrorMessageEnum{
+    USERNAMEPASSWORDINCORRECT = 1,
+    PASSWORDINCORRECT = 2
+}

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
+import { AuthModel, AuthResponseModel } from '../../shared/models/authModel';
+import constants from '../../constants';
+import { ErrorMessageEnum } from '../../enums/errorMessageTypeEnum';
 
 @Component({
   selector: 'app-login',
@@ -8,32 +11,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-  user = {
+  user : AuthModel =  {
     username : "",
     password : ""
   }
+  infoMsg : string;
 
-  msg;
-
-  constructor(private _logServ : LoginService, private _router : Router) { }
+  constructor(private _loginService : LoginService, private _router : Router) { }
 
   ngOnInit() {
   }
 
-  login(){
-    this._logServ.login(this.user).subscribe((result)=>{
+  public login() : void{
+    this._loginService.login(this.user).subscribe((result : AuthResponseModel)=>{
       if(result){
-        localStorage.setItem("token", result);
+        localStorage.setItem("token", result.token);
         this._router.navigate(["/profile"]);
       }
-      // console.log(result);
-    }, err=>{
-      if(err.error.type == 1){
-        this.msg = "This Username and Password is Incorrect !";
+    }, error=>{
+      if(error.error.type === ErrorMessageEnum.USERNAMEPASSWORDINCORRECT){
+        this.infoMsg = constants.loginMessages.USERNAME_PASSWORD_INCORRECT;
       }
-      if(err.error.type == 2){
-        this.msg = "This Password is Incorrect !";
+      if(error.error.type === ErrorMessageEnum.PASSWORDINCORRECT){
+        this.infoMsg = constants.loginMessages.PASSWORD_INCORRECT;
       }
     })
   }

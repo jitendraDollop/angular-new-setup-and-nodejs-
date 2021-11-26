@@ -13,8 +13,8 @@ export class ProfileComponent implements OnInit {
 
   tempUsers;
   constructor(private _userServ : UserService) { 
+    
     this._userServ.getAll().subscribe((result)=>{
-      // console.log(result);
       this.allUsers = result;
     }) 
   }

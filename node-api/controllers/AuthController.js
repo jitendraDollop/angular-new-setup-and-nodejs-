@@ -9,7 +9,7 @@ exports.index = (req, res)=>{
         if(result.length == 1){
             if(result[0].password == obj.password){
                 var token  = jwt.sign({ _id : result[0].id, username : result[0].username}, "dollop infotech");
-                res.status(200).json(token);
+                res.status(200).json({ token });
             }
             else
             {

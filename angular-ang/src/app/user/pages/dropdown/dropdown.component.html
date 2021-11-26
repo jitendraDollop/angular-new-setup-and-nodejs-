@@ -1,0 +1,46 @@
+
+
+
+
+
+
+
+
+
+
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Select Dropdown</h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Select Country</label>
+                        <select  (change)="onCountry($event.target.value)" class="form-control">
+                            <option value="">Select</option>
+                            <option *ngFor="let country of country" value="{{ country.countryId }}">{{ country.name }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Select State</label>
+                        <select (change)="onState($event.target.value)" class="form-control">
+                            <option value="">Select</option>
+                            <option *ngFor="let state of selectedCountry" value="{{ state.stateId }}">{{ state.name }}</option>
+                            
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Select City</label>
+                        <select class="form-control">
+                            <option value="">Select</option>
+                            <option *ngFor="let city of selectedCity" value="{{ city.cityId }}">{{ city.name }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

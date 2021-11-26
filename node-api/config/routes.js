@@ -5,6 +5,8 @@ routes.use("/api/signup", require("../routes/Signup"));
 routes.use("/api/auth", require("../routes/Auth"));
 routes.use("/api/user", backdoor, require("../routes/User"));
 routes.use("/api/file", backdoor, require("../routes/File"));
+routes.use("/api/select", backdoor, require("../routes/Select"));
+routes.use("/api/dropdown", backdoor, require("../routes/Dropdown"));
 
 function backdoor(req, res, next){
     if(!req.headers.authorization || req.headers.authorization == ""){

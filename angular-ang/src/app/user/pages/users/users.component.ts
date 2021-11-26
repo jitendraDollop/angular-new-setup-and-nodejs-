@@ -12,7 +12,6 @@ export class UsersComponent implements OnInit {
 
   constructor(private _userServ : UserService) {
     this._userServ.getAll().subscribe((result)=>{
-      // console.log(result);
       this.allUsers = result[0];
     })
    }
