@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+import { environment } from '../../../environments/environment';
+import { UserProfileResponseModel } from '../shared/models/userModel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
-  apiUrl = "http://localhost:2000/api/user/";
+  apiUrl : string = `${environment.API_URL}/api/user/`;
 
   constructor(private _http : HttpClient) { }
-
-  getAll(){
-    return this._http.get<any>(this.apiUrl, {
+  public getAll() : Observable<Array<UserProfileResponseModel>>{
+    return this._http.get<Array<UserProfileResponseModel>>(this.apiUrl, {
       headers : { Authorization : localStorage.getItem("token")}
     });
   }
@@ -43,11 +45,11 @@ export class UserService {
   country(){
     return [
       {
-        id : 1,
+        id : "1",
         name : "india"
       },
       {
-        id : 2,
+        id : "2",
         name : "united state"
       },
       {
@@ -60,20 +62,24 @@ export class UserService {
   state(){
     return [
       {
-        id : 1,
-        name : "madhya pradesh"
+        id : "1",
+        name : "madhya pradesh",
+        countryId : "1"
       },
       {
-        id : 2,
-        name : "chhattisgarh"
+        id : "2",
+        name : "chhattisgarh",
+        countryId : "1"
       },
       {
-        id : 2,
-        name : "US 01"
+        id : "3",
+        name : "US 01",
+        countryId : "2"
       },
       {
-        id : 2,
-        name : "US 02"
+        id : "4",
+        name : "US 02",
+        countryId : "2"
       }
     ]
   }
@@ -81,68 +87,54 @@ export class UserService {
   city(){
     return [
       {
-        id : 1,
-        name : "Jabalpur"
+        id : "1",
+        name : "Jabalpur",
+        stateId : "1"
       },
       {
-        id : 1,
-        name : "Jhabua"
+        id : "2",
+        name : "Jhabua",
+        stateId : "1"
       },
       {
-        id : 1,
-        name : "Reva"
+        id : "3",
+        name : "Bhopal",
+        stateId : "1"
       },
       {
-        id : 1,
-        name : "Bhopal"
+        id : "4",
+        name : "Reva",
+        stateId : "1"
       },
       {
-        id : 1,
-        name : "Ratlam"
+        id : "5",
+        name : "Ratlam",
+        stateId : "1"
       },
       {
-        id : 1,
-        name : "Sagar"
+        id : "6",
+        name : "Raipur",
+        stateId : "2"
       },
       {
-        id : 1,
-        name : "Dhar"
+        id : "7",
+        name : "Akaltara",
+        stateId : "2"
       },
       {
-        id : 1,
-        name : "Chhindwara"
+        id : "8",
+        name : "Ambikapur",
+        stateId : "2"
       },
       {
-        id : 2,
-        name : "Raipur"
+        id : "9",
+        name : "Bilaspur",
+        stateId : "2"
       },
-      {
-        id : 2,
-        name : "Akaltara"
-      },
-      {
-        id : 2,
-        name : "Ambikapur"
-      },
-      {
-        id : 2,
-        name : "Bhilai"
-      },
-      {
-        id : 2,
-        name : "Bilaspur"
-      },
-      {
-        id : 2,
-        name : "Durg"
-      },
-      {
-        id : 2,
-        name : "Ratanpur"
-      }
-
     ]
   }
 
 }
-  
+
+
+

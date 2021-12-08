@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
+
+import { LoginService } from '../../services/login.service';
 import { AuthModel, AuthResponseModel } from '../../shared/models/authModel';
+
 import constants from '../../constants';
 import { ErrorMessageEnum } from '../../enums/errorMessageTypeEnum';
 
@@ -24,9 +26,13 @@ export class LoginComponent implements OnInit {
 
   public login() : void{
     this._loginService.login(this.user).subscribe((result : AuthResponseModel)=>{
-      if(result){
+      if(result && result.token){
         localStorage.setItem("token", result.token);
         this._router.navigate(["/profile"]);
+      }
+      else
+      {
+        this.infoMsg = constants.loginMessages.TOKEN_ERROR;
       }
     }, error=>{
       if(error.error.type === ErrorMessageEnum.USERNAMEPASSWORDINCORRECT){

@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AuthModel, AuthResponseModel } from '../shared/models/authModel';
 import { Observable } from 'rxjs';
+
+import { AuthModel, AuthResponseModel } from '../shared/models/authModel';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   
-  constructor(private _http : HttpClient, private _router : Router) { 
-    console.log(process.env.API_URL);
-  }
+  constructor(private _http : HttpClient, private _router : Router) {   }
   
-
   public login(LoginRequest : AuthModel) : Observable<AuthResponseModel>{
-    return this._http.post<AuthResponseModel>(`${process.env.API_URL}/api/auth`, LoginRequest)
+    return this._http.post<AuthResponseModel>(`${environment.API_URL}/api/auth`, LoginRequest)
   }
 
   public logout() : void{

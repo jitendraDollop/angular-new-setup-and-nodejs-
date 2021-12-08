@@ -72,7 +72,6 @@
                             <select (change)="onChangeCountrySelect($event)" formControlName="country" [ngClass]="{'is-invalid' : isSubmit && userReg.controls.country.errors}" class="form-control">
                                 <option value="">Select</option>
                                 <option *ngFor="let countryes of country" value="{{ countryes.id}}">{{ countryes.name }}</option>
-                            
                             </select>
                             <div class="invalid-feedback" *ngIf="isSubmit && userReg.controls.country.errors">
                                 <div *ngIf="userReg.controls.country.errors.required">
@@ -82,9 +81,9 @@
                         </div>
                         <div class="form-group">
                             <label>Select State</label>
-                            <select formControlName="state" [ngClass]="{'is-invalid' : isSubmit && userReg.controls.state.errors}" class="form-control">
+                            <select (change)="onChangeStateSelect($event)" formControlName="state" [ngClass]="{'is-invalid' : isSubmit && userReg.controls.state.errors}" class="form-control">
                                 <option value="">Select</option>
-                                <option *ngFor="let states of state">{{ states.name }}</option>
+                                <option *ngFor="let states of state" value="{{ states.id}}">{{ states.name }}</option>
                             </select>
                             <div class="invalid-feedback" *ngIf="isSubmit && userReg.controls.state.errors">
                                 <div *ngIf="userReg.controls.state.errors.required">
@@ -96,7 +95,7 @@
                             <label>Select City</label>
                             <select formControlName="city" [ngClass]="{'is-invalid' : isSubmit && userReg.controls.city.errors}" class="form-control">
                                 <option value="">Select</option>
-                                <option *ngFor="let cities of city">{{ cities.name }}</option>
+                                <option *ngFor="let cities of city" value="cities.id">{{ cities.name }}</option>
                             </select>
                             <div class="invalid-feedback" *ngIf="isSubmit && userReg.controls.city.errors">
                                 <div *ngIf="userReg.controls.city.errors.required">

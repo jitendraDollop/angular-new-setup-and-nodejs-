@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SignupService } from '../../services/signup.service';
 import { Router } from '@angular/router';
+
 import { contactErr, conNumberError, passwordError, passwordCharector } from '../../../helper/helper.validation';
+
+import { SignupService } from '../../services/signup.service';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -12,9 +14,8 @@ import { UserService } from '../../services/user.service';
 })
 
 export class SignupComponent implements OnInit {
-
   userReg : FormGroup;
-  isSubmit = false;
+  isSubmit : boolean = false;
   country =[];
   state =[];
   city =[];
@@ -48,7 +49,9 @@ export class SignupComponent implements OnInit {
     }
     this._signServ.save(this.userReg.value).subscribe((result)=>{
       this._router.navigate(["/login"]);
-    })
+    }, error=>{
+      console.log(error);
+    });
   }
   
   public reset() : void{
@@ -56,10 +59,14 @@ export class SignupComponent implements OnInit {
     this.userReg.reset();
   }
   
-  public onChangeCountrySelect(country) : void{
-    this.country = this._userServ.country().filter(st=>st.id);
-    this.city = this._userServ.city().filter(e=>e.id == country.target.value);
-    this.state = this._userServ.state().filter(ev=>ev.id == country.target.value);
+  public onChangeCountrySelect(event : Event) : void{
+    const value = (<HTMLInputElement>event.target).value;
+    this.state = this._userServ.state().filter(ev=>ev.countryId === value);
+  }
+
+  public onChangeStateSelect(event : Event) : void{
+    const value = (<HTMLInputElement>event.target).value
+    this.city = this._userServ.city().filter(e=>e.stateId === value);
   }
   
 }

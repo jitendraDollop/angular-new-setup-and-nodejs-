@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
 
+import { UserService } from '../../services/user.service';
+import { UserProfileResponseModel } from '../../shared/models/userModel';
 
 @Component({
   selector: 'app-profile',
@@ -8,25 +9,24 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
-  allUsers = [];
-
+  allUsers : Array<UserProfileResponseModel> = [];
   tempUsers;
-  constructor(private _userServ : UserService) { 
-    
-    this._userServ.getAll().subscribe((result)=>{
+
+  constructor(private _userServ : UserService) {  
+    this._userServ.getAll().subscribe((result :  Array<UserProfileResponseModel>)=>{
       this.allUsers = result;
+
     }) 
   }
 
-  ngOnInit() {
+  ngOnInit() : void{
   }
 
-  askDelete(obj){
+  public askDelete(obj) : void{
     this.tempUsers = obj;
   }
 
-  delete(){
+  public delete() : void{
     this._userServ.delete(this.tempUsers._id).subscribe((result)=>{
       let n = this.allUsers.indexOf(this.tempUsers);
       this.allUsers.splice(n, 1);
