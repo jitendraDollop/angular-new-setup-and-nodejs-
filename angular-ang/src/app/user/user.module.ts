@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -19,11 +18,7 @@ import { AddProfileComponent } from './pages/add-profile/add-profile.component';
 import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
 import { FilesComponent } from './pages/files/files.component';
 import { UsersComponent } from './pages/users/users.component';
-
-import { SelectService } from './services/select.service';
 import { DropdownComponent } from './pages/dropdown/dropdown.component';
-
-
 
 @NgModule({
   declarations: [UserComponent, HomeComponent, SignupComponent, LoginComponent, ProfileComponent, HeaderComponent, AddProfileComponent, EditProfileComponent, FilesComponent, UsersComponent, DropdownComponent],
@@ -34,6 +29,6 @@ import { DropdownComponent } from './pages/dropdown/dropdown.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers : [LoginService, SignupService, UserService, SelectService]
+  providers : [LoginService, SignupService, UserService]
 })
 export class UserModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 import { UserService } from '../../services/user.service';
 import { conNumberError, contactErr, passwordError, passwordCharector } from '../../../helper/helper.validation';
 
@@ -11,9 +12,9 @@ import { conNumberError, contactErr, passwordError, passwordCharector } from '..
 export class AddProfileComponent implements OnInit {
 
   userReg : FormGroup;
-  isSubmit = false;
+  isSubmit : boolean =  false;
 
-  showMsg;
+  userRagistrationAddingMessage;
 
   constructor(private _fb : FormBuilder, private _userServ : UserService) { 
     this.userReg = this._fb.group({
@@ -34,16 +35,16 @@ export class AddProfileComponent implements OnInit {
     )
   }
 
-  ngOnInit() {
+  ngOnInit() : void {
   }
 
-  submit(){
+  public submit() : void{
     this.isSubmit = true;
     if(this.userReg.invalid){
       return;
     }
     this._userServ.add(this.userReg.value).subscribe((result)=>{
-      this.showMsg = true;
+      this.userRagistrationAddingMessage = true;
       this.userReg.setValue({
         _id : "",
         name : "",
@@ -53,18 +54,12 @@ export class AddProfileComponent implements OnInit {
         contact : "",
         address : ""
       });
-      this.isSubmit = false;
-      
-      // console.log(result);
+      this.isSubmit = false;    
     })
-    // console.log(this.userReg.value);
   }
 
-  reset(){
+  public reset(){
     this.isSubmit = false;
     this.userReg.reset();
   }
-
-  
-
 }

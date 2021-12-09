@@ -1,4 +1,5 @@
 export class UserProfileResponseModel {
+    _id : string;
     name : string;
     username : string;
     contact : string;

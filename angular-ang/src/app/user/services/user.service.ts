@@ -12,20 +12,21 @@ export class UserService {
   apiUrl : string = `${environment.API_URL}/api/user/`;
 
   constructor(private _http : HttpClient) { }
+
   public getAll() : Observable<Array<UserProfileResponseModel>>{
     return this._http.get<Array<UserProfileResponseModel>>(this.apiUrl, {
       headers : { Authorization : localStorage.getItem("token")}
     });
   }
 
-  get(id){
+  public get(id){
     return this._http.get<any>(this.apiUrl+id, {
       headers : { Authorization : localStorage.getItem("token")}
     });
   }
 
-  add(obj){
-    return this._http.post<any>(this.apiUrl, obj, {
+  public add(userAddingRequest){
+    return this._http.post<any>(this.apiUrl, userAddingRequest, {
       headers : { Authorization : localStorage.getItem("token")}
     });
   }
@@ -36,7 +37,7 @@ export class UserService {
     });
   }
 
-  delete(id){
+  delete(id : string){
     return this._http.delete<any>(this.apiUrl+id, {
       headers : { Authorization : localStorage.getItem("token")}
     });
