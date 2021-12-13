@@ -9,21 +9,18 @@ import { UserProfileResponseModel } from '../../shared/models/userModel';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  allUsers : Array<UserProfileResponseModel> = [];
-  tempUsers;
+  allUsers : Array<UserProfileResponseModel>;
+  tempUsers : UserProfileResponseModel;
 
   constructor(private _userServ : UserService) {  
-    this._userServ.getAll().subscribe((result :  Array<UserProfileResponseModel>)=>{
-      this.allUsers = result;
-
-    }) 
+    this._getUserProfile();
   }
 
   ngOnInit() : void{
   }
 
-  public askDelete(obj) : void{
-    this.tempUsers = obj;
+  public askDelete(user : UserProfileResponseModel) : void{
+    this.tempUsers = user;
   }
 
   public delete() : void{
@@ -31,6 +28,14 @@ export class ProfileComponent implements OnInit {
       let n = this.allUsers.indexOf(this.tempUsers);
       this.allUsers.splice(n, 1);
     })
+  }
+
+  private _getUserProfile() : void {
+    this._userServ.getAll().subscribe((result :  Array<UserProfileResponseModel>)=>{
+      this.allUsers = result;
+    }, error=>{
+      console.log(error);
+    });
   }
 
 }

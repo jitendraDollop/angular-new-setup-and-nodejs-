@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class LoginService {
-  
+
   constructor(private _http : HttpClient, private _router : Router) {   }
   
   public login(LoginRequest : AuthModel) : Observable<AuthResponseModel>{

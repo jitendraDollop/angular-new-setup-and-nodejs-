@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 import { UserProfileResponseModel } from '../shared/models/userModel';
+import { UserRegistrationModel } from '../shared/models/userRegistrationModel';
+import { UserModel } from '../shared/models/getUserModel';
 
 @Injectable({
   providedIn: 'root'
@@ -19,19 +21,19 @@ export class UserService {
     });
   }
 
-  public get(id){
-    return this._http.get<any>(this.apiUrl+id, {
+  public get(id : string) : Observable<UserModel>{
+    return this._http.get<UserModel>(this.apiUrl+id, {
       headers : { Authorization : localStorage.getItem("token")}
     });
   }
 
-  public add(userAddingRequest){
-    return this._http.post<any>(this.apiUrl, userAddingRequest, {
+  public add(userRequest : UserRegistrationModel) : Observable<any>{
+    return this._http.post<any>(this.apiUrl, userRequest, {
       headers : { Authorization : localStorage.getItem("token")}
     });
   }
 
-  update(obj, id : any){
+  update(obj, id : string){
     return this._http.put<any>(this.apiUrl+id, obj, {
       headers : { Authorization : localStorage.getItem("token")}
     });

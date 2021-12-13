@@ -21,21 +21,7 @@ export class SignupComponent implements OnInit {
   city =[];
 
   constructor(private _fb : FormBuilder, private _signServ : SignupService, private _router : Router, private _userServ : UserService) {
-    this.userReg = this._fb.group({
-      name : ["", Validators.required],
-      username : ["", [ Validators.required, Validators.email]],
-      password : ["", Validators.required],
-      re_password : ["", Validators.required],
-      contact : ["", Validators.required],
-      address : ["", Validators.required],
-      country : ["", Validators.required],
-      state : ["", Validators.required],
-      city : ["", Validators.required]
-    },
-    {
-      validators : [conNumberError(), contactErr(), passwordError(), passwordCharector()]
-    }
-    )
+    this._initializeRegistrationForm();
   }
   
   ngOnInit() {
@@ -69,4 +55,21 @@ export class SignupComponent implements OnInit {
     this.city = this._userServ.city().filter(e=>e.stateId === value);
   }
   
+  private _initializeRegistrationForm() : void {
+    this.userReg = this._fb.group({
+      name : ["", Validators.required],
+      username : ["", [ Validators.required, Validators.email]],
+      password : ["", Validators.required],
+      re_password : ["", Validators.required],
+      contact : ["", Validators.required],
+      address : ["", Validators.required],
+      country : ["", Validators.required],
+      state : ["", Validators.required],
+      city : ["", Validators.required]
+    },
+    {
+      validators : [conNumberError(), contactErr(), passwordError(), passwordCharector()]
+    }
+    )
+  }
 }

@@ -10,15 +10,41 @@ import { conNumberError, contactErr, passwordError, passwordCharector } from '..
   styleUrls: ['./add-profile.component.scss']
 })
 export class AddProfileComponent implements OnInit {
-
   userReg : FormGroup;
   isSubmit : boolean =  false;
-
   userRagistrationAddingMessage;
+  country = [];
+  state = [];
+  city = [];
 
   constructor(private _fb : FormBuilder, private _userServ : UserService) { 
+    this._initializeForm();
+  }
+
+  ngOnInit() : void {
+    this.country = this._userServ.country();
+  }
+
+  public submit() : void{
+    this.isSubmit = true;
+    if(this.userReg.invalid){
+      return;
+    }
+    this._userServ.add(this.userReg.value).subscribe((result)=>{
+      console.log(result);
+      this.userRagistrationAddingMessage = true;
+      this.reset();
+      this.isSubmit = false;    
+    });
+  }
+
+  public reset(){
+    this.isSubmit = false;
+    this.userReg.reset();
+  }
+
+  private _initializeForm() : void{
     this.userReg = this._fb.group({
-      _id : [""],
       name : ["", Validators.required],
       username : ["",[Validators.required, Validators.email]],
       password : ["", Validators.required],
@@ -32,34 +58,17 @@ export class AddProfileComponent implements OnInit {
     {
       validators : [conNumberError(),contactErr(), passwordError(), passwordCharector()]
     }
-    )
+    );
   }
 
-  ngOnInit() : void {
+  public onChangeCountrySelect(event : Event): void{
+    const value = (<HTMLInputElement>event.target).value;
+    this.state = this._userServ.state().filter(count => count.countryId === value);
   }
 
-  public submit() : void{
-    this.isSubmit = true;
-    if(this.userReg.invalid){
-      return;
-    }
-    this._userServ.add(this.userReg.value).subscribe((result)=>{
-      this.userRagistrationAddingMessage = true;
-      this.userReg.setValue({
-        _id : "",
-        name : "",
-        username : "",
-        password : "",
-        re_password : "",
-        contact : "",
-        address : ""
-      });
-      this.isSubmit = false;    
-    })
+  public onChangeStateSelect(event : Event): void {
+    const value = (<HTMLInputElement>event.target).value;
+    this.city = this._userServ.city().filter(state => state.stateId === value);
   }
 
-  public reset(){
-    this.isSubmit = false;
-    this.userReg.reset();
-  }
 }
